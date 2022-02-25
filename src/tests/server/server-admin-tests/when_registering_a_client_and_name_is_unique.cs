@@ -50,4 +50,12 @@ public class when_registering_a_client_and_name_is_unique
     {
         Result.Value.Should().NotBe(string.Empty);
     }
+
+    [Fact]
+    public void client_registration_is_stored()
+    {
+        Context.Clients.SingleOrDefault(c => c.Token == Result.Value)
+            .Should()
+            .NotBeNull();
+    }
 }

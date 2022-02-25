@@ -1,6 +1,7 @@
 ﻿using Ardalis.Result;
 using MediatR;
 using server_admin_core.Context;
+using server_admin_core.Models;
 
 namespace server_admin_application;
 
@@ -30,7 +31,23 @@ public class RegisterClient
                     Result<string>.Error("Client already exists with this name"));
             }
 
-            return Task.FromResult(Result<string>.Success("1234"));
+            var token = GenerateToken();
+
+            _context.Clients.Add(
+                new Client
+                {
+                    Name = request.Name,
+                    Token = token
+                });
+
+            _context.SaveChanges();
+
+            return Task.FromResult(Result<string>.Success(token));
+        }
+
+        private string GenerateToken()
+        {
+            return "1234";
         }
     }
 }
