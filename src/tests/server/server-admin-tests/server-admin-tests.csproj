@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.5.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\server\server-admin-application\server-admin-application.csproj" />
+    <ProjectReference Include="..\..\..\server\server-admin-core\server-admin-core.csproj" />
   </ItemGroup>
 
 </Project>

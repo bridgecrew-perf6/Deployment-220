@@ -16,4 +16,8 @@
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\server-admin-core\server-admin-core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,14 +1,17 @@
 ﻿using Ardalis.Result;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using server_admin_application;
+using server_admin_core.Context;
 using Xunit;
 
 namespace server_admin_tests;
 
 public class when_registering_a_client_and_name_is_unique
 {
-    private RegisterClient.Handler Subject;
-    private Result<string> Result;
+    private RegisterClient.Handler Subject = null!;
+    private Result<string> Result = null!;
+    private AdministrationContext Context = null!;
 
     public when_registering_a_client_and_name_is_unique()
     {
@@ -19,7 +22,13 @@ public class when_registering_a_client_and_name_is_unique
 
     private void Arrange()
     {
-        Subject = new RegisterClient.Handler();
+        var options = new DbContextOptionsBuilder<AdministrationContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+
+        Context = new AdministrationContext(options);
+
+        Subject = new RegisterClient.Handler(Context);
     }
 
     private void Act()
